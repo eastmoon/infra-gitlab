@@ -1,0 +1,24 @@
+# Docker-Compose document
+# Ref : https://docs.docker.com/compose/compose-file/
+
+version: "3"
+services:
+  gitlab:
+    image: gitlab/gitlab-ee:latest
+    container_name: demo_service_gitlab_${TAG}
+    restart: always
+    ports:
+      - "22:22"
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ../conf:/etc/gitlab
+      - ../logs:/var/log/gitlab
+      - ../data:/var/opt/gitlab
+      - ../backups/:/var/opt/gitlab/backups
+    networks:
+      - service_network
+
+networks:
+  service_network:
+    driver: bridge
