@@ -139,8 +139,10 @@ goto end
 :cli-start (
     echo ^> Build ebook Docker images
     call :cli-start-docker-prepare
+    cd %cd%\docker
     rd /S /Q %cd%\data
     rd /S /Q %cd%\logs
+    cd ..
 
     echo ^> Startup docker container instance
     @rem Run next deveopment with stdout

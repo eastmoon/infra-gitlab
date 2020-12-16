@@ -1,5 +1,9 @@
 # Project folder
-.env
+logs/
+data/
+backups/
+conf/*
+!/conf/gitlab.rb
 
 # third-party library
 

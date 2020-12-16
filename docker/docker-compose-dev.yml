@@ -12,10 +12,10 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ../conf:/etc/gitlab
-      - ../logs:/var/log/gitlab
-      - ../data:/var/opt/gitlab
-      - ../backups/:/var/opt/gitlab/backups
+      - ./conf:/etc/gitlab
+      - ./logs:/var/log/gitlab
+      - ./data:/var/opt/gitlab
+      - ./backups/:/var/opt/gitlab/backups
     networks:
       - service_network
 
