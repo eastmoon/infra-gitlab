@@ -3,7 +3,7 @@
 # https://docs.gitlab.com/ee/api/members.html#add-a-member-to-a-group-or-project
 
 # Declare variable
-export ACCESS_TOKEN < access_token
+ACCESS_TOKEN=$(cat access_token)
 
 # Declare function
 function create-user() {
@@ -28,13 +28,13 @@ function add-group() {
 
 # Execute script
 [ ! -d ./.tmp ] && mkdir .tmp
-#create-user testA testA@testmail.com
+create-user testA testA@testmail.com
 add-group testA RD
 add-group testA PM
 add-group testA QA
-#create-user testB testB@testmail.com
+create-user testB testB@testmail.com
 add-group testB RD
-#create-user testC testC@testmail.com
+create-user testC testC@testmail.com
 add-group testC PM
-#create-user testD testD@testmail.com
+create-user testD testD@testmail.com
 add-group testD QA

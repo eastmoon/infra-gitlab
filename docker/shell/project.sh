@@ -2,7 +2,7 @@
 # https://docs.gitlab.com/ee/api/projects.html#create-project
 
 # Declare variable
-export ACCESS_TOKEN < access_token
+ACCESS_TOKEN=$(cat access_token)
 
 # Declare function
 function create-project() {

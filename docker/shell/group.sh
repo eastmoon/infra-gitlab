@@ -2,7 +2,7 @@
 # https://docs.gitlab.com/ee/api/groups.html#new-group
 
 # Declare variable
-export ACCESS_TOKEN < access_token
+ACCESS_TOKEN=$(cat access_token)
 
 # Declare function
 function create-group() {
