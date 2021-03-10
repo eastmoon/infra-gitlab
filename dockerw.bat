@@ -129,7 +129,7 @@ goto end
 :: ------------------- Command "start" mathod -------------------
 
 :cli-start-docker-prepare (
-    @rem Create .env for docker-compose
+    @rem Create .env for pose
     echo Current Environment %PROJECT_ENV%
     echo TAG=%PROJECT_NAME% > .env
 
@@ -146,7 +146,7 @@ goto end
 
     echo ^> Startup docker container instance
     @rem Run next deveopment with stdout
-    docker-compose -f ./docker/docker-compose-%PROJECT_ENV%.yml up -d
+    docker-compose -f ./docker/docker-compose.yml up -d
 
     goto end
 )
@@ -170,7 +170,7 @@ goto end
 
 :cli-down (
     @rem Close docker container instance by docker-compose
-    docker-compose -f ./docker/docker-compose-%PROJECT_ENV%.yml down
+    docker-compose -f ./docker/docker-compose.yml down
 
     goto end
 )
