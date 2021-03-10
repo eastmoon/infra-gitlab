@@ -4,7 +4,7 @@
 version: "3"
 services:
   gitlab:
-    image: gitlab/gitlab-ee:latest
+    build: ./
     container_name: demo_service_gitlab_${TAG}
     restart: always
     ports:
