@@ -131,7 +131,7 @@ goto end
 :cli-start-docker-prepare (
     @rem Create .env for pose
     echo Current Environment %PROJECT_ENV%
-    echo TAG=%PROJECT_NAME% > .env
+    echo TAG=%PROJECT_NAME% > ./docker/.env
 
     goto end
 )
