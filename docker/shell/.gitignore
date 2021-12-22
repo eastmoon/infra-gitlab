@@ -1,5 +1,7 @@
 # Project folder
 .tmp/
+.log/
+access_token
 
 # third-party library
 
