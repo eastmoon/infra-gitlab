@@ -29,12 +29,9 @@ Gitlab 的設定可分成在 gitlab.rb 設定和在 Admin 頁面設定 ( 用 roo
 
 ## 操作
 
-+ 啟動、關閉
 + [備份、重建](https://docs.gitlab.com/ee/raketasks/backup_restore.html)
-+ 帳號與權限
-+ 安全性設定 ( SSL、Https )
-+ 建立專案
-+ 移除專案
++ [帳號與權限](./shell/readme.md)
++ [專案管理](./shell/readme.md)
 
 ## 議題
 
