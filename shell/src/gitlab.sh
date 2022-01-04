@@ -6,7 +6,7 @@ then
     echo-i GIT_ACCESS_TOKEN=${GIT_ACCESS_TOKEN}
     echo-i GIT_SERVER=${GIT_SERVER}
 else
-    echo-e ERROR : access_token was not find.
+    echo-e ERROR : access_token was not find, please run 0-initial-token.sh.
     exit 1
 fi
 
