@@ -34,13 +34,12 @@ function add-group() {
     user=${1}
     group=${2}
     level=${3}
-    [ ! -z ${level} ] && level=30
+    [ -z ${level} ] && level=30
     user_id=$(jshon -e id < .tmp/user_${user})
     group_id=$(jshon -e id < .tmp/group_${group})
     #
-    echo-i "> User ${user} add group ${group}"
+    echo-i "> User ${user} add to group ${group} with access level ${level}"
     curl --silent --show-error --request POST --header "PRIVATE-TOKEN: ${GIT_ACCESS_TOKEN}" \
         --data "user_id=${user_id}&access_level=${level}" \
         "http://${GIT_SERVER}/api/v4/groups/${group_id}/members" > .log/user_${user}_to_${group}
-
 }
