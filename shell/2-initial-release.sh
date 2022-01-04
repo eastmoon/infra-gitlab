@@ -1,9 +1,6 @@
 ## Gitlab 的專案在 CI 佈局的設置，建立開發主線 ( master，unprotect )、產品主線 ( release，protect )
 #!/bin/bash
 set -e
-
-# Declare variable
-source ./src/conf.sh
 # Include library
 source ./src/utils.sh
 source ./src/gitlab.sh

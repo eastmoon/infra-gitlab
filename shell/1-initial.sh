@@ -1,9 +1,6 @@
 ## 初始化 Gitlab 專案的主要資訊，以此方式建立並確保可重複執行整個設置行為
 #!/bin/bash
 set -e
-
-# Declare variable
-source ./src/conf.sh
 # Include library
 source ./src/utils.sh
 source ./src/gitlab.sh
