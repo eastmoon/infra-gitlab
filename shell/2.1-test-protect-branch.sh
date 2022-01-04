@@ -1,4 +1,4 @@
-## Gitlab 的專案在 CI 佈局的設置，建立開發主線 ( master，unprotect )、產品主線 ( release，protect )
+## Gitlab 專案對於分支保護 ( Protect Branch ) 設定
 #!/bin/bash
 set -e
 # Include library
