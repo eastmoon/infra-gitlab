@@ -9,16 +9,17 @@ source ./src/utils.sh
 source ./src/gitlab.sh
 
 # Execute script
+## Retrieve gitlab version infromation
 echo-i $(gitlab-version)
 
-# create group
+## create group
 echo-i "Create Group"
 create-group RD "This group for development repository."
 create-group PM "This group for project management repository."
 create-group QA "This group for quality assurance repository."
 retrieve-group
 
-# create user
+## create user
 echo-i "Create User"
 create-user testA testA@testmail.com
 create-user testB testB@testmail.com
@@ -34,7 +35,7 @@ add-group testB RD
 add-group testC PM 20
 add-group testD QA 20
 
-# create project
+## create project
 echo-i "Create Project"
 create-project-with-readme ws-core RD
 create-project-with-readme ws-corex RD
