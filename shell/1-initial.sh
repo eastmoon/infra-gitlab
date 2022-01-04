@@ -40,9 +40,7 @@ echo-i "Create Project"
 create-project-with-readme ws-core RD
 create-project-with-readme ws-corex RD
 create-project-with-readme ws-corexx RD
-create-project-with-readme ws-corexxX RD
 retrieve-project
 edit-project-desc ws-core "It is a ws-core project"
 edit-project-desc ws-corex "It is a ws-corex project"
 edit-project-desc ws-corexx "It is a ws-corexx project"
-edit-project-desc ws-corexxX "It is a ws-corexxX project"
