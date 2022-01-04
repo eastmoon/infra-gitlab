@@ -14,7 +14,4 @@ fi
 [ ! -d ./.tmp ] && mkdir .tmp
 # include shell script
 MODULES_DIRECTORY=$(dirname ${BASH_SOURCE})
-. ${MODULES_DIRECTORY}/gitlab/info.sh
-. ${MODULES_DIRECTORY}/gitlab/groups.sh
-. ${MODULES_DIRECTORY}/gitlab/users.sh
-. ${MODULES_DIRECTORY}/gitlab/projects.sh
+. ${MODULES_DIRECTORY}/git/repository.sh

@@ -1,3 +1,4 @@
+## 初始化 Gitlab 專案的主要資訊，以此方式建立並確保可重複執行整個設置行為
 #!/bin/bash
 set -e
 
@@ -33,13 +34,17 @@ add-group testA RD
 add-group testA PM
 add-group testA QA
 add-group testB RD
-add-group testC PM
-add-group testD QA
+add-group testC PM 20
+add-group testD QA 20
 
 # create project
 echo-i "Create Project"
-create-project ws-core RD
-create-project ws-corex RD
-create-project ws-corexx RD
-create-project ws-corexxX RD
+create-project-with-readme ws-core RD
+create-project-with-readme ws-corex RD
+create-project-with-readme ws-corexx RD
+create-project-with-readme ws-corexxX RD
 retrieve-project
+edit-project-desc ws-core "It is a ws-core project"
+edit-project-desc ws-corex "It is a ws-corex project"
+edit-project-desc ws-corexx "It is a ws-corexx project"
+edit-project-desc ws-corexxX "It is a ws-corexxX project"

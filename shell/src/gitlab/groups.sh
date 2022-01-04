@@ -11,6 +11,8 @@ function create-group() {
     name=${1}
     descript=${2}
     data='{"name": "'${name}'", "path": "'${name}'", "description": "'${descript}'", "visibility": "private"}'
+    #
+    echo-i "> Group create ${name}, ${descript}"
     curl --silent --show-error --request POST --header "PRIVATE-TOKEN: ${GIT_ACCESS_TOKEN}" --header "Content-Type: application/json" \
         --data "${data}" \
         "http://${GIT_SERVER}/api/v4/groups" > .log/group_${1}

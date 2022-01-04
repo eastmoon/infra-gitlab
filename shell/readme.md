@@ -18,4 +18,5 @@
     - groups.sh，Gitlab 的 group 分類相關指令
     - users.sh，Gitlab 的 user 分類相關指令
     - projects.sh，Gitlab 的 project 分類相關指令
++ git.sh，定義與巨集 git 操作指令函數
     - repository.sh，Git 的 Repository 操控指令
