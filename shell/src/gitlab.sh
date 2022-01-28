@@ -13,7 +13,7 @@ else
     echo-e ERROR : access_token was not find, please run 0-initial-token.sh.
     exit 1
 fi
-#
+# Declare variable for directory path
 [ ! -d ./.log ] && mkdir .log
 [ ! -d ./.tmp ] && mkdir .tmp
 # include shell script

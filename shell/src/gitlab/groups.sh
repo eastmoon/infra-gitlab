@@ -6,6 +6,10 @@
 # Declare variable
 
 # Declare function
+## 建立群組
+## @function ( NAME, DESCRIPT )
+## @param NAME, 群組名稱
+## @param DESCRIPT, 群組描述
 function create-group() {
     ## create one group by name
     name=${1}
@@ -18,6 +22,7 @@ function create-group() {
         "http://${GIT_SERVER}/api/v4/groups" > .log/group_${1}
 }
 
+## 取回群組列表，並存入 .tmp/groups，與拆解單一群組資訊至 .tmp/group_<NAME> 
 function retrieve-group() {
     ## Retrieve all group information
     curl -s --request GET --header "PRIVATE-TOKEN: ${GIT_ACCESS_TOKEN}" "http://${GIT_SERVER}/api/v4/groups" > .tmp/groups

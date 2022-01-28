@@ -6,6 +6,11 @@
 # Declare variable
 
 # Declare function
+## 建立專案，此專案為完全空白
+## 專案 ( Project ) 等於 Git 中的儲存庫 ( Repository )
+## @function ( NAME, GROUP )
+## @param NAME, 專案名稱
+## @param GROUP, 群組名稱, 在 Gitlab 也稱為 Namespace
 function create-project() {
     name=${1}
     group_name=${2}
@@ -18,6 +23,11 @@ function create-project() {
         "http://${GIT_SERVER}/api/v4/projects" > .log/project_${name}
 }
 
+## 建立專案，並預設一個 readme.md 文檔
+## 專案 ( Project ) 等於 Git 中的儲存庫 ( Repository )
+## @function ( NAME, GROUP )
+## @param NAME, 專案名稱
+## @param GROUP, 群組名稱, 在 Gitlab 也稱為 Namespace
 function create-project-with-readme() {
     name=${1}
     group_name=${2}
@@ -30,6 +40,11 @@ function create-project-with-readme() {
         "http://${GIT_SERVER}/api/v4/projects" > .log/project_${name}
 }
 
+## 編輯專案描述
+## 專案 ( Project ) 等於 Git 中的儲存庫 ( Repository )
+## @function ( NAME, DESCRIPT )
+## @param NAME, 專案名稱
+## @param DESCRIPT, 專案描述
 function edit-project-desc() {
     name=${1}
     desc=${2}
@@ -43,6 +58,8 @@ function edit-project-desc() {
 
 }
 
+## 取回專案列表，並存入 .tmp/projects，與拆解單一專案資訊至 .tmp/project_<NAME>
+## 專案取回要提供 per_page 參數，已設定取回的數量；此函數預設取回 1000 個專案清單。
 function retrieve-project() {
     ## Retrieve first 1000 project
     curl -s --request GET --header "PRIVATE-TOKEN: ${GIT_ACCESS_TOKEN}" "http://${GIT_SERVER}/api/v4/projects?pagination=keyset&per_page=1000&order_by=id&simple=true" > .tmp/projects
@@ -55,6 +72,9 @@ function retrieve-project() {
     done
 }
 
+## 保護分支資訊
+## @function ( NAME )
+## @param NAME, 專案名稱
 function protect-branch-info() {
     name=${1}
     id=$(jshon -e id < .tmp/project_${name})
@@ -64,6 +84,11 @@ function protect-branch-info() {
     curl -s --header "PRIVATE-TOKEN: ${GIT_ACCESS_TOKEN}" \
         "http://${GIT_SERVER}/api/v4/projects/${id}/protected_branches"
 }
+
+## 保護分支
+## @function ( NAME, BRANCH )
+## @param NAME, 專案名稱
+## @param BRANCH, 分支名稱或白名單文字 ( White Card )
 function protect-branch() {
     name=${1}
     branch=${2}
@@ -75,6 +100,10 @@ function protect-branch() {
         "http://${GIT_SERVER}/api/v4/projects/${id}/protected_branches?${query}" > .log/project_${name}-protect-master-branch
 }
 
+## 解除保護分支
+## @function ( NAME, BRANCH )
+## @param NAME, 專案名稱
+## @param BRANCH, 分支名稱或白名單文字 ( White Card )
 function unprotect-branch() {
     name=${1}
     branch=${2}

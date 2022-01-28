@@ -7,6 +7,10 @@
 # Declare variable
 
 # Declare function
+## 建立用戶
+## @function ( NAME, MAIL )
+## @param NAME, 用戶名稱
+## @param MAIL, 用戶信箱
 function create-user() {
     name=${1}
     email=${2}
@@ -18,6 +22,7 @@ function create-user() {
         "http://${GIT_SERVER}/api/v4/users" > .log/user_${name}
 }
 
+## 取回用戶列表，並存入 .tmp/users，與拆解單一用戶資訊至 .tmp/user_<NAME>
 function retrieve-user() {
     ## Retrieve all group information
     curl -s --request GET --header "PRIVATE-TOKEN: ${GIT_ACCESS_TOKEN}" "http://${GIT_SERVER}/api/v4/users" > .tmp/users
@@ -30,7 +35,12 @@ function retrieve-user() {
     done
 }
 
-function add-group() {
+## 增加用戶至群組
+## @function ( USER-NAME, GROUP-NAME, ACCESS_LEVEL )
+## @param USER-NAME, 用戶名稱
+## @param GROUP-NAME, 群組名稱
+## @param ACCESS_LEVEL, 存取等級, 參考 : https://docs.gitlab.com/ee/api/access_requests.html
+function add-user-to-group() {
     user=${1}
     group=${2}
     level=${3}
