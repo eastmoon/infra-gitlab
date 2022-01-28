@@ -29,9 +29,15 @@ Gitlab 的設定可分成在 gitlab.rb 設定和在 Admin 頁面設定 ( 用 roo
 
 ## 操作
 
-+ [備份、重建](https://docs.gitlab.com/ee/raketasks/backup_restore.html)
-+ [帳號與權限](./shell/readme.md)
-+ [專案管理](./shell/readme.md)
+操作腳本可分為兩類：
+
++ Gitlab API 操作
+    - 用戶、系統資訊
+    - 專案建立、清單
++ Git 操作
+    - 專案版本控制
+
+腳本設計與規劃請詳見[Shell](./shell/readme.md)
 
 ## 議題
 
@@ -82,5 +88,6 @@ Gitlab 的設定可分成在 gitlab.rb 設定和在 Admin 頁面設定 ( 用 roo
 + [Gitlab install](https://docs.gitlab.com/omnibus/installation/)
     - [GitLab Docker images](https://docs.gitlab.com/omnibus/docker/)
     - [Official Linux package (Ubuntu、Debian、CentOS)](https://about.gitlab.com/install/#ubuntu)
++ [Gitlab backup & restore](https://docs.gitlab.com/ee/raketasks/backup_restore.html)
 + [和艦長一起 30 天玩轉 GitLab 系列](https://ithelp.ithome.com.tw/m/users/20120986/ironman/2733?sc=iThelpR)
     - [Admin Area—維運 GitLab Server 的管理者後台](https://ithelp.ithome.com.tw/m/articles/10215637)
