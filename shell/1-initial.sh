@@ -25,12 +25,12 @@ create-user testD testD@testmail.com
 retrieve-user
 
 echo-i "Add User into Group"
-add-group testA RD
-add-group testA PM
-add-group testA QA
-add-group testB RD
-add-group testC PM 20
-add-group testD QA 20
+add-user-to-group testA RD
+add-user-to-group testA PM
+add-user-to-group testA QA
+add-user-to-group testB RD
+add-user-to-group testC PM 20
+add-user-to-group testD QA 20
 
 ## create project
 echo-i "Create Project"
