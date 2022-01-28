@@ -13,11 +13,11 @@ else
     echo-e ERROR : access_token was not find, please run 0-initial-token.sh.
     exit 1
 fi
-#
+# Declare variable for directory path
 export SHELL_ROOT_DIR=${PWD}
 export SHELL_GIT_DIR=${SHELL_ROOT_DIR}/.git
 [ ! -d ${SHELL_GIT_DIR} ] && mkdir -p ${SHELL_GIT_DIR}
-#
+# Declare git global variable
 git config --global user.name "${GIT_USER_NAME}"
 git config --global user.email "${GIT_USER_MAIL}"
 # include shell script

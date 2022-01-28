@@ -3,6 +3,12 @@
 # Declare variable
 
 # Declare function
+
+## 初始化專案
+## @function ( GROUP, REPOSITORY, BRANCH)
+## @param GROUP, 專案所屬的 GROUP ( 也稱 namespace )
+## @param REPOSITORY, 在 Gitlab 中的專案庫名稱
+## @param BRANCH, 專案庫初始後切換的分支
 function git-init() {
     # Declare variable
     GROUP=${1}
@@ -29,11 +35,15 @@ function git-init() {
     cd ${SHELL_ROOT_DIR}
 }
 
+## 初始化專案分支
+## 初始化分支也可以說是基於當前分支，產生一個新的分支並推送至 Git 主機
+## @function ( REPOSITORY, BRANCH)
+## @param REPOSITORY, 在本地的專案庫名稱
+## @param BRANCH, 初始化要產生的分支名稱
 function git-init-branch() {
     # Declare variable
     REPO=${1}
     BRANCH=${2}
-    ROOT_DIR=${PWD}
     echo-i "> Init repository ${REPO} new branch ${BRANCH}"
     # Check repository exist and branch not exist
     cd ${SHELL_GIT_DIR}
