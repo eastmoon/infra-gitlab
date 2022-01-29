@@ -62,3 +62,28 @@ function git-init-branch() {
     fi
     cd ${SHELL_ROOT_DIR}
 }
+
+## 刪除分支
+## @function ( REPOSITORY, BRANCH )
+## @param REPOSITORY, 在本地的專案庫名稱
+## @param BRANCH, 初始化要產生的分支名稱
+function git-remove-branch() {
+    # Declare variable
+    REPO=${1}
+    BRANCH=${2}
+    echo-i "> Remove repository ${REPO} branch ${BRANCH}"
+    # Check repository exist
+    cd ${SHELL_GIT_DIR}
+    if [ -d "${REPO}" ];
+    then
+        cd ${REPO}
+        if [ $(git branch | grep ${BRANCH} | wc -l) -eq 1 ];
+        then
+            git branch -d ${BRANCH}
+            git push --delete origin ${BRANCH}
+        else
+            echo-e "Branch is not exist"
+        fi
+    fi
+    cd ${SHELL_ROOT_DIR}
+}
