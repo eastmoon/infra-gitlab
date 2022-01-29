@@ -5,7 +5,7 @@ source ${MODULES_DIRECTORY}/conf.sh
 if [ -e access_token ];
 then
     GIT_ACCESS_TOKEN=$(cat access_token)
-    echo-i Import Gitlab library
+    echo-i "Gitlab library paramter"
     echo-i GIT_ACCESS_NAME=${GIT_ACCESS_NAME}
     echo-i GIT_ACCESS_TOKEN=${GIT_ACCESS_TOKEN}
     echo-i GIT_SERVER=${GIT_SERVER}
