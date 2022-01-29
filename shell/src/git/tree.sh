@@ -32,6 +32,8 @@ function git-tree-add-commit() {
             git fetch
             git pull
         fi
+        # Use "add" for unstaged file, "add -u" for staged file
+        # ref: https://zlargon.gitbooks.io/git-tutorial/content/file/remove.html
         git add .
         git add -u
         git commit -m"${COMMIT_DESC}"
