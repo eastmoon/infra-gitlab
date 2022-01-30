@@ -8,6 +8,7 @@ source ./src/git.sh
 
 # Declare variable
 TEST_REPO_NAME=test-case-2.1-`date "+%Y%m%d%H%M%S"`
+
 # Execute script
 ## Create test repository
 create-project-with-readme ${TEST_REPO_NAME} QA
