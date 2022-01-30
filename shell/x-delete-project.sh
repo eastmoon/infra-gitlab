@@ -21,5 +21,8 @@ delete-project-with-name test-case-2*
 delete-project-with-name demo-case-3-*
 delete-project-with-name test-case-3*
 
-## Remove case 3
+## Remove case 4
 delete-project-with-name demo-case-4-*
+
+## Remove case 5
+delete-project-with-name demo-case-5-*

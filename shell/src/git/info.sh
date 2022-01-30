@@ -18,6 +18,7 @@ function git-info-repo() {
         cd ${REPO}
         git --version
         git branch -a
+        git remote -v
     fi
     cd ${SHELL_ROOT_DIR}
 }

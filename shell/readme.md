@@ -96,6 +96,21 @@
     - ```fix-release``` merge to ```master```
     - ```master``` push to ```release```
 
+## 5、鏡像專案與遠程分支
+
+使用 Git 指令鏡像專案，並將專案內容推送至目標專案
+
++ 建立鏡像專案
+    - 將來源專案的原碼樹從自身的主線分支 ( master ) 或特定分支 ( feature/<branch name>) 鏡像到目標專案的主線分支 ( master )
+    - 需要注意，目標專案若要推送到主線分支 ( master )，必須為尚未建立主線分支的空專案，例如使用 ```create-project``` 建立的專案
++ 建立遠程分支 ```remote/<branch name>```
+    - 將來源專案的原碼樹從自身的遠程分支 ( ```remote/<branch name>``` ) 鏡像到目標專案的開發分支 ( ```feature/<branch name>``` )，並透過分支來雙向溝通原始碼
+    - 修改開發分支，合併回來源專案；修改遠程分支，推送回目標專案
+
+原則上，不論是鏡像專案、遠程分支，都是以目標專案為中心在執行相關操作，來源方僅需提供分支與內容。
+
+## 6、子專案
+
 # 參考
 
 + [Git 入門](https://backlog.com/git-tutorial/tw/)
