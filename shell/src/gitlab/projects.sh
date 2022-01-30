@@ -1,5 +1,5 @@
 # Create project with Gitlab API
-# https://docs.gitlab.com/ee/api/projects.html#create-project
+# https://docs.gitlab.com/ee/api/projects.html
 
 # include shell script
 
@@ -38,6 +38,30 @@ function create-project-with-readme() {
     curl --silent --show-error --request POST --header "PRIVATE-TOKEN: ${GIT_ACCESS_TOKEN}" --header "Content-Type: application/json" \
         --data "${data}" \
         "http://${GIT_SERVER}/api/v4/projects" > .log/project_${name}
+}
+
+function delete-project() {
+    name=${1}
+    id=$(jshon -e id < .tmp/project_${name})
+    id=${id//\ }
+    id=${id//\"}
+    #
+    echo-i "> Project delete ${name}"
+    curl -s --request DELETE --header "PRIVATE-TOKEN: ${GIT_ACCESS_TOKEN}" \
+        "http://${GIT_SERVER}/api/v4/projects/${id}" > .log/project_delete_${name}
+}
+
+function delete-project-with-name() {
+    name=${1}
+    for filename in $(ls .tmp/project_${name})
+    do
+        project_name=$(jshon -e name < ${filename})
+        project_name=${project_name//\ }
+        project_name=${project_name//\"}
+        delete-project ${project_name}
+        rm ${filename}
+    done
+
 }
 
 ## 編輯專案描述
