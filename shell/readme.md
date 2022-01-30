@@ -69,7 +69,7 @@
 
 ## 3、release 分支
 
-使用 Git 指令建立受保護的產品分支
+使用 Gitlab 指令建立受保護的產品分支
 
 + 解除舊產品分支 ```master```
 + 設定保護分支白名單 ```release*```
@@ -83,3 +83,24 @@
 + ```protect-branch```
 
 逐一確認 unportect branch、protect branch、protect branch white card 的結果
+
+## 4、fix 分支
+
+使用 Git 指令建立維護分支並合併修復內容
+
++ 建立維護分支 ```fix-release```
++ 修改內容
++ 依序合併分支
+    - ```fix-release``` merge to ```master```
+    - ```master``` push to ```release```
+
+## 5、鏡像專案
+
+## 6、子專案
+
+# 參考
+
++ [Git 入門](https://backlog.com/git-tutorial/tw/)
+    - [什麼是分支？](https://backlog.com/git-tutorial/tw/stepup/stepup1_1.html)
+    - [分支的切換](https://backlog.com/git-tutorial/tw/stepup/stepup1_3.html)
+    - [分支的合并](https://backlog.com/git-tutorial/cn/stepup/stepup1_4.html)
