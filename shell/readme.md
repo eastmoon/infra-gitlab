@@ -21,7 +21,9 @@
     - users.sh，Gitlab 的 user 分類相關指令
     - projects.sh，Gitlab 的 project 分類相關指令
 + git.sh，定義與巨集 git 操作指令函數
-    - repository.sh，Git 的 Repository 操控指令
+    - info.sh，Git 對 Repository 資訊相關指令
+    - repository.sh，Git 對 Repository 與 Branch 操控指令
+    - tree.sh，Git 對 Repository 的 git tree 操控指令
 
 # 腳本
 
@@ -93,10 +95,6 @@
 + 依序合併分支
     - ```fix-release``` merge to ```master```
     - ```master``` push to ```release```
-
-## 5、鏡像專案
-
-## 6、子專案
 
 # 參考
 
