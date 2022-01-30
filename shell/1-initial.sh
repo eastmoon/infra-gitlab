@@ -14,6 +14,7 @@ echo-i "Create Group"
 create-group RD "This group for development repository."
 create-group PM "This group for project management repository."
 create-group QA "This group for quality assurance repository."
+create-group DEMO "This group for DEMO repository."
 retrieve-group
 
 ## create user

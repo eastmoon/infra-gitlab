@@ -1,4 +1,5 @@
 # Project folder
+.git/
 .tmp/
 .log/
 access_token
