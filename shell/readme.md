@@ -13,10 +13,73 @@
 
 # 函式庫
 
++ conf.sh，定義函式庫的必須參數
 + utils.sh，定義與巨集 linux shell 指令
 + gitlab.sh，定義與巨集 gitlab 操作指令函數
+    - info.sh，Gitlab 的系統資訊相關指令
     - groups.sh，Gitlab 的 group 分類相關指令
     - users.sh，Gitlab 的 user 分類相關指令
     - projects.sh，Gitlab 的 project 分類相關指令
 + git.sh，定義與巨集 git 操作指令函數
     - repository.sh，Git 的 Repository 操控指令
+
+# 腳本
+
+腳本以 Linux Shell Script 撰寫，並利用函式庫的內容來完成對 Gitlab 與 Git 操作
+
+## 0、初始 Access Token
+
+以 Gitlab 的 Ruby on Rails 服務，建立可供 Gitlab API 操作使用的 ACCESS TOKEN。
+
+## 1、初始 Gitlab
+
+依據 Gitlab 專案所需，建立以下主要資訊
+
++ 群組 ( Group )
++ 用戶 ( User )，並規劃用戶操作群組的權限
++ 專案 ( Project )，並規劃專案所屬群組的關係
+
+## 2、feature、refactor 等開發分支
+
+使用 Git 指令建立開發分支
+
++ 開發需求分支 ```feature/<branch name>```
++ 開發重構分支 ```refactor/<branch name>```
+
+範例會分別在 feature、refactor 工作，並最後合併回 master 分支
+
+### 2.1、測試分支產生
+
+檢驗 git 功能腳本
+
++ ```git-init```
++ ```git-init-branch```
++ ```git-tree-add-commit```
++ ```git-info-repo```
++ ```git-info-repo-log```
+
+### 2.2、測試分支刪除
+
+檢驗 git 功能腳本
+
++ ```git-init```
++ ```git-init-branch```
++ ```git-remove-branch```
++ ```git-info-repo```
+
+## 3、release 分支
+
+使用 Git 指令建立受保護的產品分支
+
++ 解除舊產品分支 ```master```
++ 設定保護分支白名單 ```release*```
++ 建立產品分支 ```release```
+
+### 3.1、測試分支保護
+
+檢驗 gitlab 功能腳本
+
++ ```unprotect-branch```
++ ```protect-branch```
+
+逐一確認 unportect branch、protect branch、protect branch white card 的結果

@@ -1,4 +1,4 @@
-## Git 操作，藉由 git-init 下載並切換專案分支，並由當前分支在建立新分支
+## Git 操作，藉由 git-init 下載並切換專案分支，並由當前分支在建立新分支後刪除
 #!/bin/bash
 set -e
 # Include library
