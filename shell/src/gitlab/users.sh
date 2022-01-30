@@ -22,6 +22,22 @@ function create-user() {
         "http://${GIT_SERVER}/api/v4/users" > .log/user_${name}
 }
 
+## 建立管理用戶
+## @function ( NAME, MAIL )
+## @param NAME, 用戶名稱
+## @param MAIL, 用戶信箱
+function create-admin() {
+    name=${1}
+    email=${2}
+    data='{"name": "'${name}'","username": "'${name}'", "email": "'${email}'", "password": "1234qwer", "admin": "true", "can_create_group": "true", "skip_confirmation": "true"}'
+    #
+    echo-i "> Admin user create ${name}, ${email}"
+    curl --silent --show-error --request POST --header "PRIVATE-TOKEN: ${GIT_ACCESS_TOKEN}" --header "Content-Type: application/json" \
+        --data "${data}" \
+        "http://${GIT_SERVER}/api/v4/users" > .log/user_${name}
+}
+
+
 ## 取回用戶列表，並存入 .tmp/users，與拆解單一用戶資訊至 .tmp/user_<NAME>
 function retrieve-user() {
     ## Retrieve all group information
