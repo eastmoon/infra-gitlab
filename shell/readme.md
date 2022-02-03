@@ -117,3 +117,6 @@
     - [什麼是分支？](https://backlog.com/git-tutorial/tw/stepup/stepup1_1.html)
     - [分支的切換](https://backlog.com/git-tutorial/tw/stepup/stepup1_3.html)
     - [分支的合并](https://backlog.com/git-tutorial/cn/stepup/stepup1_4.html)
++ 議題參考
+    - [解決Git常見錯誤 non-fast-forward問題](https://ithelp.ithome.com.tw/articles/10199000)
+    - [聽說 git push -f 這個指令很可怕，什麼情況可以使用它呢？](https://gitbook.tw/chapters/github/using-force-push)
