@@ -14,7 +14,7 @@
 function create-user() {
     name=${1}
     email=${2}
-    data='{"name": "'${name}'","username": "'${name}'", "email": "'${email}'", "password": "1234qwer", "can_create_group": "false", "skip_confirmation": "true"}'
+    data='{"name": "'${name}'","username": "'${name}'", "email": "'${email}'", "password": "ssap!2#4", "can_create_group": "false", "skip_confirmation": "true"}'
     #
     echo-i "> User create ${name}, ${email}"
     curl --silent --show-error --request POST --header "PRIVATE-TOKEN: ${GIT_ACCESS_TOKEN}" --header "Content-Type: application/json" \
