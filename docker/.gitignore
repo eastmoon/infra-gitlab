@@ -2,8 +2,7 @@
 logs/
 data/
 backups/
-conf/*
-!/conf/gitlab.rb
+conf/
 
 # third-party library
 
