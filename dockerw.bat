@@ -140,8 +140,10 @@ goto end
     echo ^> Build ebook Docker images
     call :cli-start-docker-prepare
     cd %cd%\docker
-    rd /S /Q %cd%\data
-    rd /S /Q %cd%\logs
+    if EXIST backups ( rd /S /Q backups )
+    if EXIST conf ( rd /S /Q conf )
+    if EXIST data ( rd /S /Q data )
+    if EXIST logs ( rd /S /Q logs )
     cd ..
 
     echo ^> Startup docker container instance
