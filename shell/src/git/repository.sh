@@ -25,7 +25,7 @@ function git-init() {
     GROUP=${1}
     REPO=${2}
     BRANCH=${3}
-    [ -z ${BRANCH} ] && BRANCH=master
+    [ -z ${BRANCH} ] && BRANCH=main
     [ ! -d ${REPO_DIR} ] && mkdir -p ${REPO_DIR}
     echo-i "> Init repository ${GROUP}/${REPO}, branch ${BRANCH}"
     # Check repository exist, if not then clone repository from gitlab server.
@@ -105,7 +105,7 @@ function git-remove-branch() {
     cd ${SHELL_ROOT_DIR}
 }
 
-## 鏡像專案，設定目標專案主線 ( master ) 為來源專案的分支內容
+## 鏡像專案，設定目標專案主線 ( main ) 為來源專案的分支內容
 ## @function ( SOURCE_GROUP, SOURCE_REPOSITORY, SOURCE_BRANCH, TARGET_GROUP, TARGET_REPOSITORY, TARGET_BRANCH )
 ## @param SOURCE_GROUP, 鏡像來源專案的群組名稱
 ## @param SOURCE_REPOSITORY, 鏡像來源專案的專案名稱
@@ -119,7 +119,7 @@ function git-init-mirror-repository() {
     SOURCE_BRANCH=${3}
     TARGET_GROUP=${4}
     TARGET_REPOSITORY=${5}
-    TARGET_BRANCH=master
+    TARGET_BRANCH=main
 
     # Mirror branch to target branch
     git-init-mirror-branch ${SOURCE_GROUP} ${SOURCE_REPOSITORY} ${SOURCE_BRANCH} ${TARGET_GROUP} ${TARGET_REPOSITORY} ${TARGET_BRANCH}

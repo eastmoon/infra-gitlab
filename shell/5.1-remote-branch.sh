@@ -21,11 +21,11 @@ create-project ${TARGET_REPO[1]} ${TARGET_REPO[0]}
 retrieve-project
 
 ## Mirror repository
-git-init-mirror-repository ${SOURCE_REPO[0]} ${SOURCE_REPO[1]} master ${TARGET_REPO[0]} ${TARGET_REPO[1]}
+git-init-mirror-repository ${SOURCE_REPO[0]} ${SOURCE_REPO[1]} main ${TARGET_REPO[0]} ${TARGET_REPO[1]}
 
 ## Initial repository
-git-init ${SOURCE_REPO[0]} ${SOURCE_REPO[1]} master
-git-init ${TARGET_REPO[0]} ${TARGET_REPO[1]} master
+git-init ${SOURCE_REPO[0]} ${SOURCE_REPO[1]} main
+git-init ${TARGET_REPO[0]} ${TARGET_REPO[1]} main
 
 ## Create remote branch in source
 git-init-branch ${SOURCE_REPO[1]} ${SOURCE_REPO[2]}
@@ -56,7 +56,7 @@ git-tree-add-commit ${TARGET_REPO[1]} "feat: modify request-function file"
 ### Push to target
 git-mirrot-branch-target-to-source ${SOURCE_REPO[1]} ${SOURCE_REPO[2]} ${TARGET_REPO[1]} ${TARGET_REPO[2]}
 
-## Show master information
+## Show main information
 git-init ${SOURCE_REPO[0]} ${SOURCE_REPO[1]} ${SOURCE_REPO[2]}
 git-info-repo ${SOURCE_REPO[1]}
 git-info-repo-log ${SOURCE_REPO[1]} 5

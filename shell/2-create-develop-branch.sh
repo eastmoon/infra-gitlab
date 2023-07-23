@@ -14,7 +14,7 @@ TEST_REPO_NAME=demo-case-2-`date "+%Y%m%d%H%M%S"`
 create-project-with-readme ${TEST_REPO_NAME} DEMO
 ## Clone repository
 rm -rf ${SHELL_GIT_DIR}/demo-case-2-*
-git-init DEMO ${TEST_REPO_NAME} master
+git-init DEMO ${TEST_REPO_NAME}
 
 ## Create develop branch "feature/request-function"
 git-init-branch ${TEST_REPO_NAME} feature/request-function
@@ -25,8 +25,8 @@ echo 1234 > request-function
 cd ${SHELL_ROOT_DIR}
 ### Add commit
 git-tree-add-commit ${TEST_REPO_NAME} "feat: add request-function file"
-### Merge feature to master
-git-tree-merge-branch ${TEST_REPO_NAME} feature/request-function master
+### Merge feature to main
+git-tree-merge-branch ${TEST_REPO_NAME} feature/request-function main
 ### Remove feature branch
 git-remove-branch ${TEST_REPO_NAME} feature/request-function
 
@@ -39,11 +39,11 @@ rm request-function
 cd ${SHELL_ROOT_DIR}
 ### Add commit
 git-tree-add-commit ${TEST_REPO_NAME} "feat: delete request-function file"
-### Merge refactor to master
-git-tree-merge-branch ${TEST_REPO_NAME} refactor/remove-function master
+### Merge refactor to main
+git-tree-merge-branch ${TEST_REPO_NAME} refactor/remove-function main
 ### Remove refactor branch
 git-remove-branch ${TEST_REPO_NAME} refactor/remove-function
 
-## Show master information
+## Show main information
 git-info-repo ${TEST_REPO_NAME}
 git-info-repo-log ${TEST_REPO_NAME} 5

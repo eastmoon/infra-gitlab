@@ -14,7 +14,7 @@ TEST_REPO_NAME=test-case-2.2-`date "+%Y%m%d%H%M%S"`
 create-project-with-readme ${TEST_REPO_NAME} QA
 ## Clone repository
 rm -rf ${SHELL_GIT_DIR}/test-case-2.2-*
-git-init QA ${TEST_REPO_NAME} master
+git-init QA ${TEST_REPO_NAME} main
 ## Create new branch "feature/demo-1"
 git-init-branch ${TEST_REPO_NAME} feature/demo-1
 git-info-repo ${TEST_REPO_NAME}

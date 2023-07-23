@@ -16,11 +16,11 @@ create-project-with-readme ${TEST_REPO_NAME} DEMO
 retrieve-project
 
 ## Setting unportect and protect branch
-unprotect-branch ${TEST_REPO_NAME} master
+unprotect-branch ${TEST_REPO_NAME} main
 protect-branch ${TEST_REPO_NAME} release*
 
 ## Initial repository
-git-init DEMO ${TEST_REPO_NAME} master
+git-init DEMO ${TEST_REPO_NAME} main
 git-init-branch ${TEST_REPO_NAME} release
 
 ## Add content in develop branch
@@ -32,7 +32,7 @@ cd ${SHELL_ROOT_DIR}
 git-tree-add-commit ${TEST_REPO_NAME} "feat: add request-function file"
 
 ## Push develop branch to release branch
-git-tree-rebase-branch ${TEST_REPO_NAME} master release
+git-tree-rebase-branch ${TEST_REPO_NAME} main release
 
 ## Create release fix branch
 git-init DEMO ${TEST_REPO_NAME} release
@@ -48,10 +48,10 @@ cd ${SHELL_ROOT_DIR}
 git-tree-add-commit ${TEST_REPO_NAME} "fix: request-function file"
 
 ## Push fix branch
-git-tree-merge-branch ${TEST_REPO_NAME} fix-release master
-git-tree-rebase-branch ${TEST_REPO_NAME} master release
+git-tree-merge-branch ${TEST_REPO_NAME} fix-release main
+git-tree-rebase-branch ${TEST_REPO_NAME} main release
 
-## Show master information
-git-init DEMO ${TEST_REPO_NAME} master
+## Show main information
+git-init DEMO ${TEST_REPO_NAME} main
 git-info-repo ${TEST_REPO_NAME}
 git-info-repo-log ${TEST_REPO_NAME} 5

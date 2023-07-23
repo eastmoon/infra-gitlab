@@ -1,4 +1,4 @@
-## Gitlab 的專案在 CI 佈局的設置，對所有 DEMO 專案建立開發主線 ( master，unprotect )、產品主線 ( release，protect )
+## Gitlab 的專案在 CI 佈局的設置，對所有 DEMO 專案建立開發主線 ( main，unprotect )、產品主線 ( release，protect )
 #!/bin/bash
 set -e
 # Include library
@@ -28,13 +28,13 @@ do
     PROJ_GROUP=${PROJ_GROUP//\"}
     if [[ ${PROJ_GROUP} != *"gitlab"* ]];
     then
-        ### 1. unprotect default branch "master"
-        unprotect-branch ${PROJ_NAME} master
+        ### 1. unprotect default branch "main"
+        unprotect-branch ${PROJ_NAME} main
         ### 2. setting protect branch white card "release*", it will protect all "release" title branch
         protect-branch ${PROJ_NAME} release*
         ### 3. git clone repository
-        git-init ${PROJ_GROUP} ${PROJ_NAME} master
-        ### 4. create new release from master ( it will new branch from git-init branch )
+        git-init ${PROJ_GROUP} ${PROJ_NAME} main
+        ### 4. create new release from main ( it will new branch from git-init branch )
         git-init-branch ${PROJ_NAME} release
     fi
 done
