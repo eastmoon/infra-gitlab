@@ -11,9 +11,14 @@ source ./src/conf.sh
 #gitlab-rails runner "PersonalAccessToken.find_by_token('token-string-here123').revoke!"
 ##
 echo-i "Create Personal Access Token ${GIT_ACCESS_NAME} : ${GIT_ACCESS_TOKEN}"
-CMD="token = User.find_by_username('root').personal_access_tokens.create(scopes: [:api, :read_user, :read_api, :read_repository, :write_repository, :sudo], name: '${GIT_ACCESS_NAME}', expires_at: 365.days.from_now); "
+CMD="if User.find_by_username('root').personal_access_tokens.find_by_token('${GIT_ACCESS_TOKEN}').nil?;"
+CMD="${CMD} token = User.find_by_username('root').personal_access_tokens.create(scopes: [:api, :read_user, :read_api, :read_repository, :write_repository, :sudo], name: '${GIT_ACCESS_NAME}', expires_at: 365.days.from_now);"
 CMD="${CMD} token.set_token('${GIT_ACCESS_TOKEN}');"
-CMD="${CMD} token.save!"
+CMD="${CMD} token.save!;"
+CMD="${CMD} else;"
+CMD="${CMD} p '${GIT_ACCESS_NAME} exist';"
+CMD="${CMD} end"
+
 gitlab-rails runner "${CMD}"
 ##
 echo-i "Generate access_token file"
