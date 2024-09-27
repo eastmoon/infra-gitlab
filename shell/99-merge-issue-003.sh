@@ -9,7 +9,7 @@ source ./src/gitlab.sh
 source ./src/git.sh
 
 # Declare function
-function s-issue-solution() {
+function issue-solution-oneline() {
     [[ "$(git rev-list -n 1 HEAD)" = "$(git rev-list --no-merges -n 1 HEAD)" ]] && git rev-list -n 1 HEAD || git log --merges --pretty=format:'%H %P' | awk '{print $1,$3}' | grep "$(git rev-list --no-merges -n 50 HEAD | tr '\n' ' ' | sed 's/.$//' | sed 's/ /\\\|/g')" | head -n 1 | awk '{print $1}'
 }
 function issue-solution() {
@@ -29,7 +29,7 @@ function issue-solution() {
         VALID_COMMIT_ID=$(git log --merges --pretty=format:'%H %P' | awk '{print $1,$3}' | grep "${NO_MERGE_LIST}" | head -n 1 | awk '{print $1}')
         ## 若有效 commit 為 Merge Commit，檢查有效 commit 是否本身有 tag 或指向有 tag 的 commit，若為事實，則有 tag 的 commit 即為有效 commit
         LAST_TAG_INFO=$(git rev-list --tags -n 1)
-        if [ $(git show --pretty=format:'%P' ${VALID_COMMIT_ID} | grep ${LAST_TAG_INFO} | wc -l) -gt 0 ]; then
+        if [ ! -z ${LAST_TAG_INFO} ] && [ $(git show --pretty=format:'%P' ${VALID_COMMIT_ID} | grep ${LAST_TAG_INFO} | wc -l) -gt 0 ]; then
             VALID_COMMIT_ID=${LAST_TAG_INFO}
         fi
     fi

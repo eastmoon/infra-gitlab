@@ -1,12 +1,38 @@
 ## Git 議題：搜尋有效的最後合併 Commit
 ## 假設有兩個開發分支 A 與 B，兩分支依序建立相關資訊
 ## 考量自動化處理機制，為合併衝突產生無效操作，Merge 指令一律使用 non-fast-forward 模式進行合併
+
 #!/bin/bash
 set -e
 # Include library
 source ./src/utils.sh
 source ./src/gitlab.sh
 source ./src/git.sh
+
+# Declare function
+function issue-solution() {
+    VALID_COMMIT_ID=
+    ## 取回有效 commit，其規則基於以下要件
+    ### 1. 若最新的 Commit 為非 Merge Commit 則為有效變更內容
+    ### 2. 若最新的 Commit 為 Merge Commit，搜尋最後指向非 Merge Commit 的 Merge Commit
+    ### 3. 指向 Merge Commit 的 Merge Commit 應被忽略
+    if [[ "$(git rev-list -n 1 HEAD)" = "$(git rev-list --no-merges -n 1 HEAD)" ]]; then
+        ## 當前最新的 commit 是非 merge commit，直接使用最新的 commit id
+        VALID_COMMIT_ID=$(git rev-list -n 1 HEAD)
+    else
+        ## 取回 50 筆非 merge commit 資訊，並組成分辨清單字串
+        ## 取回所有 merge commit，並且第三資訊存在於前分辨清單字串，則保留該 merge commit
+        ## 自保留的 merge commit 取最新一筆為記錄
+        NO_MERGE_LIST=$(git rev-list --no-merges -n 50 HEAD | tr '\n' ' ' | sed 's/.$//' | sed 's/ /\\\|/g')
+        VALID_COMMIT_ID=$(git log --merges --pretty=format:'%H %P' | awk '{print $1,$3}' | grep "${NO_MERGE_LIST}" | head -n 1 | awk '{print $1}')
+        ## 若有效 commit 為 Merge Commit，檢查有效 commit 是否本身有 tag 或指向有 tag 的 commit，若為事實，則有 tag 的 commit 即為有效 commit
+        LAST_TAG_INFO=$(git rev-list --tags -n 1)
+        if [ ! -z ${LAST_TAG_INFO} ] && [ $(git show --pretty=format:'%P' ${VALID_COMMIT_ID} | grep ${LAST_TAG_INFO} | wc -l) -gt 0 ]; then
+            VALID_COMMIT_ID=${LAST_TAG_INFO}
+        fi
+    fi
+    echo ${VALID_COMMIT_ID}
+}
 
 # Declare variable
 TEST_REPO_NAME=demo-merge-issue-001-`date "+%Y%m%d%H%M%S"`
@@ -71,6 +97,7 @@ git push
 cd ${SHELL_GIT_DIR}/${TEST_REPO_NAME}
 echo "---------- git log ----------"
 git log --pretty=format:'%H %P : %s' | tr -d '~'
+echo ""
 ### 設計議題一，不可使用最後的非 merge commit，這會導致不同分支的合併內容在此會看不到
 ### 依據可知的內容來看，這是因為當 HEAD 指向該 commit，會依照 parent hashes 重新構築一條鏈，而此鏈就如同合併進來的分支
 function design-issue-1() {
@@ -92,13 +119,6 @@ function design-issue-2() {
 echo "---------- design-issue-2 ----------"
 design-issue-2
 
-### 考量本次議題，若要搜尋最後的有效變更內容，並考量上述兩個設計議題，對此邏輯應如下所述：
-### 1. 若最後的 Commit 為非 Merge Commit 則為有效變更內容
-### 2. 若最後的 Commit 為 Merge Commit，搜尋最後指向非 Merge Commit 的 Merge Commit
-### 3. 指向 Merge Commit 的 Merge Commit 應被忽略
-function issue-solution() {
-    git reset --hard origin/HEAD
-    [[ "$(git rev-list -n 1 HEAD)" = "$(git rev-list --no-merges -n 1 HEAD)" ]] && git rev-list -n 1 HEAD || git log --merges --pretty=format:'%H %P' | awk '{print $1,$3}' | grep "$(git rev-list --no-merges -n 50 HEAD | tr '\n' ' ' | sed 's/.$//' | sed 's/ /\\\|/g')" | head -n 1 | awk '{print $1}'
-}
+### 考量本次議題，若要搜尋最後的有效變更內容，並考量上述兩個設計議題
 echo "---------- issue-solution ----------"
 issue-solution
